@@ -1,0 +1,132 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <h4 class="modal-title">Chỉnh sửa nhạc</h4>
+        <button type="button" class="btn-close" (click)="closeModel(false)" data-bs-dismiss="modal"></button>
+    </div>
+
+    <div class="modal-body">
+        <div class="add-1">
+            <h5>Loại Nhạc</h5>
+            <div class="container">
+                <label for="container one-time">Nhạc một lần</label>
+                <input type="radio" class="container music-type" name="music-type" id="container one-time"
+                    (click)="changeType(1)" [checked]="nhacModel.type==1">
+                <label for="container week">Nhạc theo tuần</label>
+                <input type="radio" class="container music-type" name="music-type" id="container week"
+                    (click)="changeType(2)" [checked]="nhacModel.type==2">
+                <label for="container year">Nhạc theo năm</label>
+                <input type="radio" class="container music-type" name="music-type" id="container year"
+                    (click)="changeType(3)" [checked]="nhacModel.type==3">
+            </div>
+
+            <div id="one-time" *ngIf="nhacModel.type==1">
+                <div class="add add-2">
+                    <h5>Nhạc một lần</h5><br>
+                </div>
+                <div style="display: flex;">
+                    <div class="add add-3">
+                        <h5>Thời gian phát</h5>
+                        <input type="time" name="usr_time" [(ngModel)]="nhacModel.thoigianPhat">
+                    </div>
+                    <div class="add add-4">
+                        <h5>Ngày phát</h5>
+                        <input type="date" id="day" name="day" [(ngModel)]="nhacModel.ngay">
+                    </div>
+                </div>
+                <div class="add add-5">
+                    <h5>Nội dung</h5>
+                    <textarea rows="5" cols="60" [(ngModel)]="nhacModel.noiDung"></textarea>
+                </div>
+                <div class="add add-6">
+                    <h5>Tình trạng</h5>
+                    <div class="status">
+                        <span class="status-text" [ngClass]="{'active': nhacModel.tinhTrang, 'inactive': !nhacModel.tinhTrang}">{{ nhacModel.tinhTrang ? 'Đang hoạt động' : 'Dừng hoạt động' }}</span>
+                        <label class="switch">
+                            <input type="checkbox" [(ngModel)]="nhacModel.tinhTrang" (click)="changeStatus(nhacModel.tinhTrang)">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                </div>
+                <button class="addnhac btn btn-success"><span class="las la-arrow-up"></span>Thêm nhạc</button>
+            </div>
+
+            <div id="week" *ngIf="nhacModel.type==2">
+                <div class="add add-2">
+                    <h5>Nhạc theo tuần</h5><br>
+                </div>
+                <div class="add add-3">
+                    <h5>Thời gian phát</h5>
+                    <input type="time" name="usr_time" [(ngModel)]="nhacModel.thoigianPhat">
+                </div>
+                <div class="add add-4">
+                    <h5>Nội dung</h5>
+                    <textarea rows="3" cols="60" [(ngModel)]="nhacModel.noiDung"> </textarea>
+                </div>
+                <div class="add add-5">
+                    <h5>Ngày trong tuần</h5>
+                    <div *ngFor="let dayWeek of ListDayOfWeek">
+                        <input  type="checkbox" name="timeday" value="week " [(ngModel)]="dayWeek.checked"> Thứ {{dayWeek.name}} <br>
+                    </div>
+                </div>
+                <div class="add add-6">
+                    <h5>Tình trạng</h5>
+                    <div class="status">
+                        <span class="status-text" [ngClass]="{'active': nhacModel.tinhTrang, 'inactive': !nhacModel.tinhTrang}">{{ nhacModel.tinhTrang ? 'Đang hoạt động' : 'Dừng hoạt động' }}</span>
+                        <label class="switch">
+                            <input type="checkbox" [(ngModel)]="nhacModel.tinhTrang" (click)="changeStatus(nhacModel.tinhTrang)">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                </div>
+                <button class="addnhac btn btn-success"><span class="las la-arrow-up"></span>Thêm nhạc</button>
+            </div>
+
+            <div id="year" *ngIf="nhacModel.type==3">
+                <div class="add add-2">
+                    <h5>Nhạc theo năm</h5><br>
+                </div>
+                <div style="display: flex; ">
+                    <div class="add add-5">
+                        <h5>Ngày trong tháng</h5>
+                        <div *ngFor="let dayMonth of ListDayOfMonth">
+                            <input type="checkbox" name="timeday" value="daymonth" [(ngModel)]="dayMonth.checked"> {{dayMonth.name}} <br>
+                        </div>
+                    </div>
+                    <div class="spacer"></div>
+                    <div>
+                        <div class="add add-3">
+                            <h5>Thời gian phát</h5>
+                            <input type="time" name="usr_time" [(ngModel)]="nhacModel.thoigianPhat">
+                        </div>
+                        <div class="add add-4">
+                            <h5>Nội dung</h5>
+                            <textarea rows="3" cols="40" [(ngModel)]="nhacModel.noiDung"></textarea>
+                            <div *ngFor="let month of ListMonthOfYear">
+                                <input type="checkbox" name="timeday" value=" Month "> {{month.name}} <br>
+                            </div>
+                        </div>
+                        <div class="add add-6">
+                            <h5>Tình trạng</h5>
+                            <div class="status">
+                                <span class="status-text" [ngClass]="{'active': nhacModel.tinhTrang, 'inactive': !nhacModel.tinhTrang}">{{ nhacModel.tinhTrang ? 'Đang hoạt động' : 'Dừng hoạt động' }}</span>
+                                <label class="switch">
+                                    <input type="checkbox" [(ngModel)]="nhacModel.tinhTrang" (click)="changeStatus(nhacModel.tinhTrang)">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="addnhac btn btn-success"><span class="las la-arrow-up"></span>Thêm nhạc</button>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <!-- [class.disabled]="!isFormValid()" -->
+            <button type="button" class="btn btn-success" (click)="saveModel()" data-bs-dismiss="modal"><span
+                    class="las la-save"></span>Lưu</button>
+            <button type="button" class="btn btn-danger" (click)="closeModel(false)" data-bs-dismiss="modal"><span
+                    class="las la-power-off"></span>Close</button>
+        </div>
+    </div>
+</div>

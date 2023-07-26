@@ -1,0 +1,15 @@
+D:\NTS\API\Service\bin\Debug\net6.0\Service.deps.json
+D:\NTS\API\Service\bin\Debug\net6.0\Service.dll
+D:\NTS\API\Service\bin\Debug\net6.0\Service.pdb
+D:\NTS\API\Service\bin\Debug\net6.0\Model.dll
+D:\NTS\API\Service\bin\Debug\net6.0\Model.pdb
+D:\NTS\API\Service\obj\Debug\net6.0\Service.csproj.AssemblyReference.cache
+D:\NTS\API\Service\obj\Debug\net6.0\Service.GeneratedMSBuildEditorConfig.editorconfig
+D:\NTS\API\Service\obj\Debug\net6.0\Service.AssemblyInfoInputs.cache
+D:\NTS\API\Service\obj\Debug\net6.0\Service.AssemblyInfo.cs
+D:\NTS\API\Service\obj\Debug\net6.0\Service.csproj.CoreCompileInputs.cache
+D:\NTS\API\Service\obj\Debug\net6.0\Service.csproj.CopyComplete
+D:\NTS\API\Service\obj\Debug\net6.0\Service.dll
+D:\NTS\API\Service\obj\Debug\net6.0\refint\Service.dll
+D:\NTS\API\Service\obj\Debug\net6.0\Service.pdb
+D:\NTS\API\Service\obj\Debug\net6.0\ref\Service.dll

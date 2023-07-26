@@ -1,0 +1,227 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <h4 class="modal-title">Thêm mới loại nhạc</h4>
+        <button type="button" class="btn-close" (click)="closeModel(false)" data-bs-dismiss="modal"></button>
+    </div>
+
+    <form #f="ngForm" class="modal-body">
+        <div class="add-1">
+            <h5>Loại Nhạc</h5>
+            <div class="container">
+                <input type="radio" class="container music-type" name="music-type1" id="container one-time"
+                (click)="changeType(1)" [checked]="nhacModel.type==1">
+                <label for="container one-time">Nhạc một lần</label>
+                <input type="radio" class="container music-type" name="music-type2" id="container week"
+                (click)="changeType(2)" [checked]="nhacModel.type==2">
+                <label for="container week">Nhạc theo tuần</label>
+                <input type="radio" class="container music-type" name="music-type3" id="container year"
+                (click)="changeType(3)" [checked]="nhacModel.type==3">
+                <label for="container year">Nhạc theo năm</label>
+            </div>
+
+            <div id="one-time" *ngIf="nhacModel.type==1">
+                <div class="add add-2">
+                    <h5>Nhạc một lần</h5><br>
+                </div>
+                <div style="display: flex;">
+                    <div class="add add-3">
+                        <h5>Thời gian phát</h5>
+                        <input type="time" name="usr_time1"  required [(ngModel)]="nhacModel.thoigianPhat">
+                    </div>
+                    <div class="add add-4">
+                        <h5>Ngày phát</h5>
+                        <input type="date" id="day" name="day1"  required [(ngModel)]="nhacModel.ngay">
+                    </div>
+                </div>
+                <div class="add add-5">
+                    <h5>Nội dung</h5>
+                    <textarea rows="5" cols="60" name="noiDung1"  required [(ngModel)]="nhacModel.noiDung"></textarea>
+                </div>
+                <div class="add add-6">
+                    <h5>Tình trạng</h5>
+                    <div class="status">
+                        <span class="status-text"  [ngClass]="{'active': nhacModel.tinhTrang, 'inactive': !nhacModel.tinhTrang}">{{ nhacModel.tinhTrang ? 'Đang hoạt động' : 'Dừng hoạt động' }}</span>
+                        <label class="switch">
+                            <input type="checkbox" name="tinhTrang1" [(ngModel)]="nhacModel.tinhTrang" (click)="changeStatus(nhacModel.tinhTrang)">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                </div>
+                <div>
+                    <input type="file" #fileInput style="display: none" (change)="uploadNhac($event)">
+                    <button class="addnhac btn btn-success" (click)="fileInput.click()">
+                        <span class="las la-arrow-up"></span> Thêm nhạc
+                    </button>
+                </div>
+            </div>
+
+            <div id="week" *ngIf="nhacModel.type==2">
+                <div class="add add-2">
+                    <h5>Nhạc theo tuần</h5><br>
+                </div>
+                <div class="add add-3">
+                    <h5>Thời gian phát</h5>
+                    <input type="time" name="usr_time2"  required [(ngModel)]="nhacModel.thoigianPhat">
+                </div>
+                <div class="add add-4">
+                    <h5>Nội dung</h5>
+                    <textarea rows="3" cols="60" name="noiDung2" required [(ngModel)]="nhacModel.noiDung"> </textarea>
+                </div>
+                <div class="add add-5">
+                    <h5>Ngày trong tuần</h5>
+                    <!-- <div>
+                    </div>
+                    <form [formGroup]="form">
+                        <kendo-label text="Favorite sport:" >
+                          <kendo-multiselect [checkboxes]="true" [autoClose]="false" [data]="ListDayOfWeek" [(ngModel)]="item" ></kendo-multiselect>
+                        </kendo-label>
+                        <div *ngFor="let item of items">
+                          <label>
+                            <input type="checkbox" [value]="item" (change)="onItemChange(item)" [checked]="selectedItems.includes(item)">
+                            {{ item }}
+                          </label>
+                        </div>
+                    </form> -->
+                    
+                    <!-- <div class="example-wrapper">
+                    </div>
+                    <div>
+                        <p>Selected Items:</p>
+                        <ul>
+                            <li *ngFor="let selectedItem of selectedItems">{{ selectedItem }}</li>
+                        </ul>
+                    </div> -->
+                    <!-- <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">
+                        <div class="formGroup">
+                        <label class="form-label">SBU<span class="text-danger text-strong">&nbsp;*</span></label>
+                        <div class="controls">
+                            <div class="input-group">
+                            <dx-drop-down-box #d2 [(value)]="treeBoxValueSBU" valueExpr="Id" displayExpr="Name" placeholder="Chọn SBU"
+                                [showClearButton]="true" [dataSource]="ListSBU" (onValueChanged)="syncTreeViewSelectionSBU($event)"
+                                [(opened)]="isDropDownBoxOpenedSBU">
+                                <dx-tree-list *dxTemplate="let data of 'content'" id="Id" [dataSource]="ListSBU" keyExpr="Id"
+                                parentIdExpr="ParentId" [showRowLines]="true" [showBorders]="true" [columnAutoWidth]="true"
+                                [expandedRowKeys]="[1,2,10]" [(selectedRowKeys)]="selectedRowKeySBUs"
+                                (onSelectionChanged)="treeView_itemSelectionChangedSBU($event)" (onRowDblClick)="onRowDblClickSBU()"
+                                [required]="true">
+                                    <dxo-selection mode="multiple" [recursive]="false"></dxo-selection>
+                                 <dxi-column dataField="Name" caption="Tên SBU"></dxi-column>
+                                </dx-tree-list>
+                            </dx-drop-down-box>
+                            </div>
+                        </div>
+                        </div>
+                    </div> -->
+                    <!-- <app-multi-dropdown 
+                        [items]="items" 
+                        [showAll]="showAll" 
+                        placeholder="Select day" 
+                        (itemChange)="onItemChange($event)">
+                    </app-multi-dropdown> -->
+
+                    <!-- <mat-form-field>
+                        <mat-select placeholder="Languages" [formControl]="languages" multiple>
+                            <mat-checkbox [(ngModel)]="selectall" (ngModelChange)="selectalllang()" >All</mat-checkbox> 
+                            <mat-option *ngFor="let language of languagesList" [value]="language">{{language}}</mat-option>
+                        </mat-select>
+                    </mat-form-field> -->
+
+                    <!-- <ng-select
+                        [items]="cars"
+                        bindLabel="name"
+                        placeholder="Select Category"
+                        appendTo="body"
+                        [multiple]="true"
+                        [(ngModel)]="selected">
+                    </ng-select> -->
+                
+
+
+                    
+                    <!-- <div *ngFor="let item of ListDayOfWeek">
+                        <input type="checkbox" name="timeday2" value="week" [value]="item" (change)="onItemChange(item)" [checked]="selectedItems.includes(item)" required [(ngModel)]="item.checked"> Thứ {{item.name}} <br>
+                    </div> -->
+
+                </div>
+                <div class="add add-6">
+                    <h5>Tình trạng</h5>
+                    <div class="status">
+                        <span class="status-text" [ngClass]="{'active': nhacModel.tinhTrang, 'inactive': !nhacModel.tinhTrang}">{{ nhacModel.tinhTrang ? 'Đang hoạt động' : 'Dừng hoạt động' }}</span>
+                        <label class="switch">
+                            <input type="checkbox" name="tinhTrang2" [(ngModel)]="nhacModel.tinhTrang" (click)="changeStatus(nhacModel.tinhTrang)">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div>
+                    <input type="file" #fileInput style="display: none" (change)="uploadNhac($event)">
+                    <button class="addnhac btn btn-success" (click)="fileInput.click()">
+                        <span class="las la-arrow-up"></span> Thêm nhạc
+                    </button>
+                </div>
+            </div>
+
+            <div id="year" *ngIf="nhacModel.type==3">
+                <div class="add add-2">
+                    <h5>Nhạc theo năm</h5><br>
+                </div>
+                <div style="display: flex; ">
+                    <div class="add add-5">
+                        <h5>Ngày trong tháng</h5>
+                        <div *ngFor="let dayMonth of ListDayOfMonth">
+                            <input type="checkbox" name="timeday3" value="daymonth"  required [(ngModel)]="dayMonth.checked"> {{dayMonth.name}} <br>
+                        </div>
+                    </div>
+                    <div class="spacer"></div>
+                    <div>
+                        <div class="add add-3">
+                            <h5>Thời gian phát</h5>
+                            <input type="time" name="usr_time3"  required [(ngModel)]="nhacModel.thoigianPhat">
+                        </div>
+                        <div class="add add-4">
+                            <h5>Nội dung</h5>
+                            <textarea rows="3" cols="40" name="noiDung3" required [(ngModel)]="nhacModel.noiDung"></textarea>
+                            <div *ngFor="let month of ListMonthOfYear">
+                                <input type="checkbox" name="timeday3.1" value=" Month "> {{month.name}} <br>
+                            </div>
+                        </div>
+                        <div class="add add-6">
+                            <h5>Tình trạng</h5>
+                            <div class="status">
+                                <span class="status-text"  [ngClass]="{'active': nhacModel.tinhTrang, 'inactive': !nhacModel.tinhTrang}">{{ nhacModel.tinhTrang ? 'Đang hoạt động' : 'Dừng hoạt động' }}</span>
+                                <label class="switch">
+                                    <input type="checkbox" name="tinhTrang3" [(ngModel)]="nhacModel.tinhTrang" (click)="changeStatus(nhacModel.tinhTrang)">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                            <!-- <div>
+                                <label for="active2">Đang hoạt động</label>
+                                <input type="radio" class="status-type" name="status-type" id="active2" (click)="changeStatus(true)">
+                            </div>
+                            <div>
+                                <label for="passive2">Dừng hoạt động</label>
+                                <input type="radio" class="status-type" name="status-type" id="passive2" (click)="changeStatus(false)">
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <input type="file" #fileInput style="display: none" (change)="uploadNhac($event)">
+                    <button class="addnhac btn btn-success" (click)="fileInput.click()">
+                        <span class="las la-arrow-up"></span> Thêm nhạc
+                    </button>
+                </div>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-success" [disabled]="!f.form.valid" (click)="saveModel(false)" data-bs-dismiss="modal"><span
+                    class="las la-save"></span>Lưu</button>
+            <button type="button" class="btn btn-success" [disabled]="!f.form.valid" (click)="saveModel(true)" data-bs-dismiss="modal"><span
+                    class="las la-save"></span>Lưu & tiếp tục</button>
+            <button type="button" class="btn btn-danger" (click)="closeModel(false)" data-bs-dismiss="modal"><span
+                    class="las la-power-off"></span>Close</button>
+        </div>
+    </form>
+</div>

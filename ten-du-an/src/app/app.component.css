@@ -1,0 +1,263 @@
+@import url('https://fonts.googleapis.com/css2? family=Poppins: wght@300;400; 500; 600&display=swap');
+
+:root {
+    --main-color: #DD2F6E;
+    --color-dark: #1D2231;
+    --text-grey: #8390A2;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    list-style-type: none;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+#sidebar {
+    position: fixed;
+    background: var(--main-color);
+    height: 100%;
+    padding-right: 0;
+}
+
+.sidebar-brand {
+    display: flex;
+    justify-content: space-between;
+    height: 90px;
+    padding: 1rem 0rem 1rem 2rem;
+    color: #fff;
+}
+
+.sidebar-menu {
+    margin-top: 1rem;
+}
+
+.sidebar-menu li {
+    width: 100%;
+    margin-bottom: 1.7rem;
+    padding-left: 1rem;
+}
+
+.sidebar-menu a {
+    padding-left: 1rem;
+    display: block;
+    color: #fff;
+    font-size: 1.1rem;
+}
+
+.sidebar-menu a.active {
+    background: #fff;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    color: var(--main-color);
+    border-radius: 30px 0px 0px 30px;
+    text-decoration: none;
+}
+
+.sidebar-menu a span:first-child {
+    font-size: 1.5rem;
+    padding-right: 1rem;
+}
+
+#body {
+    margin-left: 16%;
+}
+
+#header {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 1rem;
+    padding-right: 1rem;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    width: 83.5%;
+    top: 0;
+    z-index: 100;
+    background-color: #fff;
+}
+
+#header h3 {
+    color: #222;
+}
+
+
+#header label span {
+    font-size: 1.7rem;
+    padding-left: 1rem;
+}
+
+.user-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.user-wrapper img {
+    border-radius: 50%;
+    margin-right: 1rem;
+}
+
+.user-wrapper div h4 {
+    margin: 0;
+}
+
+.user-wrapper small {
+    display: inline-block;
+    color: var(--text-grey);
+    margin-top: -10px;
+}
+
+
+#main-content {
+    padding-top: 70px;
+}
+
+.card {
+    display: flex;
+    width: 100%;
+    margin-top: 1rem;
+    padding: 0;
+}
+
+.card-body {
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+}
+
+
+
+.search-container {
+    display: flex;
+    align-items: center;
+}
+
+.search-container>* {
+    margin-right: 10px;
+}
+
+.button {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+}
+
+/* button[type="submit"]{
+    margin-right: 0;
+} */
+
+.search-container select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 5px;
+    height: 42px;
+}
+
+.search-container .search-text {
+    display: flex;
+    width: 100%;
+}
+
+.search-container .search-text input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 5px;
+    width: 100%;
+}
+
+.search-container button {
+    padding: 8px 16px;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+    white-space: nowrap;
+}
+
+.card button span,
+button {
+    padding: 0px 5px;
+    white-space: nowrap;
+}
+
+.card .card-header {
+    display: flex;
+    align-items: center;
+}
+
+.card .card-header button {
+    padding: 8px 16px;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+    text-align: right;
+}
+
+.card .card-header .total {
+    width: 100%;
+}
+
+.card-body thead tr th {
+    white-space: nowrap;
+    /* text-align: center; */
+}
+
+.card-body table tbody tr td {
+    white-space: nowrap;
+}
+
+.table .btn-primary{
+    margin-right: 6px;
+}
+
+
+/* #footer {
+    display: flex;
+    align-items: center;
+}
+
+#footer .quantity {
+    width: 90%;
+} */
+
+#note {
+    display: flex;
+    align-items: center;
+}
+
+#note .square-box {
+    display: flex;
+    align-items: center;
+    padding: 0rem 0.5rem;
+}
+
+#note .square {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.square .la-plus {
+    background-color: #1BAE5F;
+}
+
+.square .la-edit {
+    background-color: #007BFF;
+}
+
+.square .la-trash {
+    background-color: #DC3545;
+}
+
+.square i {
+    color: white;
+}

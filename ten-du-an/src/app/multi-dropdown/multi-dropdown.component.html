@@ -1,0 +1,52 @@
+<div class="dropdown">
+    <button class="btn btn-block text-left dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="false" data-display="static" [title]="selected">
+        <span>
+            {{selected ? selected : (placeholder ? placeholder : 'Select')}}
+        </span>
+    </button>
+    <div class="dropdown-menu">
+
+        <!-- checkboxes -->
+        <div class="dropdown-item-checkboxes">
+
+            <!-- all -->
+            <div class="dropdown-item" onclick="event.stopPropagation();" *ngIf="showAll && all.visible"
+                [ngClass]="{ 'checked': all.checked }">
+                <!-- checkbox -->
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" [id]="'chkItem' + all.id"
+                        (change)='onChange($event, all)' [checked]="all.checked">
+                    <label class="custom-control-label" [for]="'chkItem' + all.id">
+                        <span class="pl-2" [title]="all.name">{{all.name}}</span>
+                    </label>
+                </div>
+            </div>
+
+            <ng-container *ngFor="let item of filtered; let i = index; trackBy: trackByUuid">
+                <div class="dropdown-item" onclick="event.stopPropagation();" *ngIf="item.visible"
+                    [ngClass]="{ 'checked': item.checked }">
+                    <!-- checkbox -->
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" [id]="'chkItem' + item.id"
+                            (change)='onChange($event, item)' [checked]="item.checked">
+                        <label class="custom-control-label" [for]="'chkItem' + item.id">
+                            <span class="pl-2" [title]="item.name">{{item.name}}</span>
+                        </label>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+
+        <!-- not found -->
+        <div class="dropdown-item" *ngIf="isEmpty">
+            No item found 🍽
+        </div>
+
+        <!-- status -->
+        <div *ngIf="showStatus" class="dropdown-count text-dark">
+            <span><b>Count:</b> {{_items.length}}</span>
+            <span><b>Checked:</b> {{checked}}</span>
+        </div>
+    </div>
+</div>

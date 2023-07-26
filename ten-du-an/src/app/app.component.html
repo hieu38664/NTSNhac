@@ -1,0 +1,158 @@
+<body>
+  <div id="main">
+    <div id="sidebar" class="col-md-2">
+      <div class="sidebar-brand">
+        <h3> NTS - Nhạc </h3>
+      </div>
+      <div class="sidebar-menu">
+        <ul>
+          <li>
+            <a href="" class="active">
+              <span class="las la-music"></span><span>Nhạc</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="body" class="col-md-10">
+
+      <div id="header">
+        <h3><label for=""><span class="las la-bars"></span></label>QUẢN LÝ NHẠC</h3>
+        
+        <div class="user-wrapper">
+          <img src="assets/img/avatar.jpg" width="40px" height="40px" alt="avatar">
+          <div>
+            <h4> Hieu </h4>
+            <small> Admin </small>
+          </div>
+        </div>
+      </div>
+
+      <div id="main-content">
+        <div class="card">
+          <div class="card-head">
+            <div class="search-container">
+              <select name="search-type" [(ngModel)]="selectedOption" (change)="updateSearchOptions()">
+                <option value="status">Tình trạng</option>
+                <option value="type">Loại nhạc</option>
+                <option value="content">Nội dung</option>
+                <option value="default" selected>Tìm kiếm theo ...</option>
+              </select>
+
+              <div class="search-text" *ngIf="selectedOption === 'content'" data-content>
+                <input type="text" name="search-box" placeholder="Tìm kiếm nhạc theo nội dung" [(ngModel)]="model.keyword" (keyup)="onKeyUp($event)">
+              </div>
+
+              <div class="search-text" *ngIf="selectedOption === 'status'">
+                <select name="search-status" id="" [(ngModel)]="statusOptions" (change)="changeStatus($event)">
+                  <option value="1">Đang hoạt động</option>
+                  <option value="2">Dừng hoạt động</option>
+                </select>
+                <input type="text" name="search-box" placeholder="Tìm kiếm nhạc theo nội dung" [(ngModel)]="model.keyword" (keyup)="onKeyUp($event)">
+              </div>
+
+              <div class="search-text" *ngIf="selectedOption === 'type'">
+                <select name="search-status" id="" [(ngModel)]="typeOptions" (change)="changeType($event)">
+                  <option value="1">Nhạc một lần</option>
+                  <option value="2">Nhạc theo tuần</option>
+                  <option value="3">Nhạc theo năm</option>
+                </select>
+                <input type="text" name="search-box" placeholder="Tìm kiếm nhạc theo nội dung" [(ngModel)]="model.keyword" (keyup)="onKeyUp($event)">
+              </div>
+
+              <div class="button">
+              </div>
+              <button class="btn btn-success" type="submit" (click)="paginationMusic()"> <span class="las la-search"></span>Tìm kiếm </button>
+              <button class="btn btn-secondary" type="secondary" (click)="clear()"><span class="las la-sync"></span>Làm mới</button>
+            </div>
+          </div>
+
+          <div class="card-header">
+            <div class="total" >
+              <h6>Tổng số {{model.totalItems}} loại nhạc</h6>
+            </div>
+            <button class="btn btn-success" (click)="addModel()"><span class="las la-plus"></span>Thêm mới</button>
+          </div>
+
+          <div class="card-body">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th> STT </th>
+                  <th> Xử lý </th>
+                  <th> Tình trạng </th>
+                  <th> Loại nhạc </th>
+                  <th> Thời gian phát </th>
+                  <th> Ngày phát </th>
+                  <th> Nội dung </th>
+                </tr>
+              </thead>
+              <tbody *ngFor="let nha of danhSachNhac ; let i = index">
+                <tr>
+                  <td> {{startIndex+i}}</td>
+                  <td>
+                    <button class="btn btn-primary" (click)="updateModel(nha.id)"> <span class="las la-edit"></span>
+                    </button>
+                    <button class="btn btn-danger" (click)="deleteModel(nha.id)"> <span class="las la-trash"></span>
+                    </button>
+                  </td>
+                  <td>
+                    <span class="active" style="color: green;" *ngIf="nha.tinhTrang==true">Đang hoạt động</span>
+                    <span class="inactive" style="color: red;" *ngIf="nha.tinhTrang==false">Dừng hoạt động</span>
+                  </td>
+                  <td>
+                    <span *ngIf="nha.type==1">Nhạc một lần</span>
+                    <span *ngIf="nha.type==2">Nhạc theo tuần</span>
+                    <span *ngIf="nha.type==3">Nhạc theo năm </span>
+                  </td>
+                  <td> {{nha.thoigianPhat}} </td>
+                  <td> {{nha.ngay}} </td>
+                  <td> {{nha.noiDung}} </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div id="footer">
+        <div class="row">
+          <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 d-flex justify-content-start">
+            <div class="controls ">
+              <select class="form-control" style="border: 1px solid #ddd;" [(ngModel)]="model.PageSize"
+                (ngModelChange)="paginationMusic()" name="pageSize">
+                <option *ngFor="let item of ListPageSize" [value]="item">{{item}}</option>
+              </select>
+            </div>
+            <label class="form-label" style="padding:4px;">bản ghi/Trang</label>
+          </div>
+          <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12  d-flex justify-content-end">
+            <ngb-pagination [collectionSize]="model.totalItems" [(page)]="model.PageNumber"
+              (pageChange)="paginationMusic()" [pageSize]="model.PageSize" [maxSize]="5" [rotate]="true"
+              [boundaryLinks]="true"></ngb-pagination>
+          </div>
+        </div>
+      </div>
+
+      <div id="note">
+        <div class="square-box">
+          <div class="square"><i class="las la-plus"></i></div>
+          <span class="caption">Thêm loại nhạc</span>
+        </div>
+        <div class="square-box">
+          <div class="square"><i class="las la-edit"></i></div>
+          <span class="caption">Chỉnh sửa loại nhạc</span>
+        </div>
+        <div class="square-box">
+          <div class="square"><i class="las la-trash"></i></div>
+          <span class="caption">Xoá loại nhạc</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</body>
+
+<!-- <router-outlet></router-outlet> -->
