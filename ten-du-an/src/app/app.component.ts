@@ -39,6 +39,8 @@ export class AppComponent implements OnInit {
   statusOptions = 'default';
   typeOptions = 'default';
 
+  sidebarOn: boolean = true;
+
   model: any = {
     PageSize: 10,
     totalItems: 0,
@@ -46,6 +48,24 @@ export class AppComponent implements OnInit {
     keyword: this.keyword,
     // status: 0,
     type: 0
+  }
+
+  leftWidth: string = '250px';
+  rightWidth: string = 'calc(100% - 260px)';
+
+  toggleLeft() {
+    if (this.leftWidth === '12%') {
+      this.leftWidth = '0';
+      this.rightWidth = '98%';
+    } else {
+      this.leftWidth = '250px';
+      this.rightWidth = 'calc(100% - 260px)';
+    }
+  }
+
+  sidebarClick(){
+    // this.sidebarOn
+    this.sidebarOn = !this.sidebarOn;
   }
 
   paginationMusic() {

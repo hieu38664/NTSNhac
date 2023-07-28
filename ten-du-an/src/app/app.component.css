@@ -15,23 +15,75 @@
     font-family: 'Poppins', sans-serif;
 }
 
-#sidebar {
-    position: fixed;
-    background: var(--main-color);
-    height: 100%;
-    padding-right: 0;
+#main {
+    display: flex;
+    width: 100%;
+    overflow: hidden;
 }
+
+.sidebar {
+    /* position: fixed; */
+    height: 100%;
+    padding: 0;
+    background: var(--main-color);
+    /* width: 250px; */
+}
+
+/* .sidebar.dong {
+    width: 100px;
+} */
 
 .sidebar-brand {
     display: flex;
-    justify-content: space-between;
-    height: 90px;
-    padding: 1rem 0rem 1rem 2rem;
+    align-items: center;
+    /* display: inline-block; */
+    /* justify-content: space-between; */
+    height: 70px;
+    padding: 1rem 1rem 1rem 1.5rem;
     color: #fff;
+    background: #fff;
+    background-color: #E4E9F7;
+}
+
+.sidebar-brand .image {
+    margin-right: 1rem;
+}
+
+.sidebar .image-text {
+    display: flex;
+    align-items: center;
+}
+
+.sidebar .logo-text {
+    display: flex;
+    flex-direction: column;
+}
+
+/* .sidebar.dong .text {
+    opacity: 0;
+} */
+
+.sidebar .image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebar .image img {
+    width: 40px;
+    border-radius: 6px;
+}
+
+.sidebar li a:hover {
+    background-color: #695CFE;
 }
 
 .sidebar-menu {
     margin-top: 1rem;
+}
+
+.sidebar-menu ul {
+    padding-left: 0;
 }
 
 .sidebar-menu li {
@@ -42,7 +94,7 @@
 
 .sidebar-menu a {
     padding-left: 1rem;
-    display: block;
+    display: flex;
     color: #fff;
     font-size: 1.1rem;
 }
@@ -57,12 +109,30 @@
 }
 
 .sidebar-menu a span:first-child {
-    font-size: 1.5rem;
+    font-size: 2rem;
     padding-right: 1rem;
 }
 
+.toggle {
+    padding-right: 1rem;
+}
+
+.sidebar,
+.body {
+    height: 100vh;
+    /* overflow: hidden; */
+    transition: width 0.3s ease;
+}
+
 #body {
-    margin-left: 16%;
+    /* left: 250px; */
+    margin-left: 10px;
+    /* float: right; */
+    /* width: 100%;
+    right: 0; */
+    /* overflow: auto; */
+    overflow-x: hidden;
+    flex: 1;
 }
 
 #header {
@@ -71,17 +141,18 @@
     padding-top: 1rem;
     padding-right: 1rem;
     box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
-    position: fixed;
-    width: 83.5%;
+    /* position: fixed; */
+    width: 100%;
     top: 0;
     z-index: 100;
-    background-color: #fff;
+    /* background-color: #E4E9F7; */
+    /* overflow: hidden; */
 }
 
-#header h3 {
+h3 {
     color: #222;
+    margin: 0;
 }
-
 
 #header label span {
     font-size: 1.7rem;
@@ -108,16 +179,17 @@
     margin-top: -10px;
 }
 
-
+/* 
 #main-content {
     padding-top: 70px;
-}
+} */
 
 .card {
     display: flex;
     width: 100%;
     margin-top: 1rem;
     padding: 0;
+    /* margin-left: 10px; */
 }
 
 .card-body {
@@ -125,8 +197,6 @@
     justify-content: space-between;
     padding: 0;
 }
-
-
 
 .search-container {
     display: flex;
@@ -205,14 +275,43 @@ button {
 
 .card-body thead tr th {
     white-space: nowrap;
-    /* text-align: center; */
+    text-align: center;
+}
+
+.card-body {
+    width: 99%;
+    overflow-x: auto;
 }
 
 .card-body table tbody tr td {
     white-space: nowrap;
 }
 
-.table .btn-primary{
+table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+.equal-width {
+    width: 200px;
+}
+
+.three-times-width {
+    width: 400px;
+}
+
+th,
+td {
+    text-align: center;
+    /* padding: 8px; */
+    border: 1px solid #ddd;
+}
+
+.stt-width {
+    width: 50px;
+}
+
+.table .btn-primary {
     margin-right: 6px;
 }
 

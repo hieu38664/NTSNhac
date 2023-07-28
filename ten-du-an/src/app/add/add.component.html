@@ -21,7 +21,7 @@
 
             <div id="one-time" *ngIf="nhacModel.type==1">
                 <div class="add add-2">
-                    <h5>Nhạc một lần</h5><br>
+                    <h5>Nhạc một lần</h5>
                 </div>
                 <div style="display: flex;">
                     <div class="add add-3">
@@ -35,7 +35,7 @@
                 </div>
                 <div class="add add-5">
                     <h5>Nội dung</h5>
-                    <textarea rows="5" cols="60" name="noiDung1"  required [(ngModel)]="nhacModel.noiDung"></textarea>
+                    <textarea rows="5" cols="60" name="noiDung1"  required [(ngModel)]="nhacModel.noiDung" class="no-resize"></textarea>
                 </div>
                 <div class="add add-6">
                     <h5>Tình trạng</h5>
@@ -57,7 +57,7 @@
 
             <div id="week" *ngIf="nhacModel.type==2">
                 <div class="add add-2">
-                    <h5>Nhạc theo tuần</h5><br>
+                    <h5>Nhạc theo tuần</h5>
                 </div>
                 <div class="add add-3">
                     <h5>Thời gian phát</h5>
@@ -65,10 +65,11 @@
                 </div>
                 <div class="add add-4">
                     <h5>Nội dung</h5>
-                    <textarea rows="3" cols="60" name="noiDung2" required [(ngModel)]="nhacModel.noiDung"> </textarea>
+                    <textarea rows="4" cols="60" name="noiDung2" required [(ngModel)]="nhacModel.noiDung" class="no-resize"> </textarea>
                 </div>
                 <div class="add add-5">
                     <h5>Ngày trong tuần</h5>
+
                     <!-- <div>
                     </div>
                     <form [formGroup]="form">
@@ -89,7 +90,7 @@
                         <p>Selected Items:</p>
                         <ul>
                             <li *ngFor="let selectedItem of selectedItems">{{ selectedItem }}</li>
-                        </ul>
+                        </ul>   
                     </div> -->
                     <!-- <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">
                         <div class="formGroup">
@@ -138,9 +139,9 @@
 
 
                     
-                    <!-- <div *ngFor="let item of ListDayOfWeek">
+                    <div *ngFor="let item of ListDayOfWeek">
                         <input type="checkbox" name="timeday2" value="week" [value]="item" (change)="onItemChange(item)" [checked]="selectedItems.includes(item)" required [(ngModel)]="item.checked"> Thứ {{item.name}} <br>
-                    </div> -->
+                    </div>
 
                 </div>
                 <div class="add add-6">
@@ -164,7 +165,7 @@
 
             <div id="year" *ngIf="nhacModel.type==3">
                 <div class="add add-2">
-                    <h5>Nhạc theo năm</h5><br>
+                    <h5>Nhạc theo năm</h5>
                 </div>
                 <div style="display: flex; ">
                     <div class="add add-5">
@@ -181,7 +182,7 @@
                         </div>
                         <div class="add add-4">
                             <h5>Nội dung</h5>
-                            <textarea rows="3" cols="40" name="noiDung3" required [(ngModel)]="nhacModel.noiDung"></textarea>
+                            <textarea rows="3" cols="40" name="noiDung3" required [(ngModel)]="nhacModel.noiDung" class="no-resize"></textarea>
                             <div *ngFor="let month of ListMonthOfYear">
                                 <input type="checkbox" name="timeday3.1" value=" Month "> {{month.name}} <br>
                             </div>

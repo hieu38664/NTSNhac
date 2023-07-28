@@ -24,6 +24,8 @@ export class AddComponent {
   // fieldsvalues: Object | undefined;
   // selectmode: any;
 
+  model:any;
+
   constructor(
     private activeModal: NgbActiveModal,
     private service: CallApiService,
@@ -152,6 +154,13 @@ export class AddComponent {
         this.listNgay.push(e.name);
       }
     });
+
+    this.ListDayOfMonth.forEach(e => {
+      if (e.checked) {
+        this.listNgay.push(e.name);
+      }
+    });
+    
     console.log(this.nhacModel);
     this.nhacModel.ngay = this.listNgay.join();
     this.service.createMusic(this.nhacModel).subscribe((data: any) => {
@@ -189,37 +198,37 @@ export class AddComponent {
     }
   }
 
-  public data: any[] = [
-    { id: 1, name: 'Item 1', checked: false },
-    { id: 2, name: 'Item 2', checked: false },
-    { id: 3, name: 'Item 3', checked: false },
-  ];
-
-  public fields: any = { text: 'name', value: 'id', isChecked: 'checked' };
-
-  public onCheckBoxChange(event: any) {
-    console.log(event.checkedItems);
-  }
+  
+  
+  
 
 
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  // public data: any[] = [
+  //   { id: 1, name: 'Item 1', checked: false },
+  //   { id: 2, name: 'Item 2', checked: false },
+  //   { id: 3, name: 'Item 3', checked: false },
+  // ];
 
+  // public fields: any = { text: 'name', value: 'id', isChecked: 'checked' };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  // public onCheckBoxChange(event: any) {
+  //   console.log(event.checkedItems);
+  // }
 
   // selectall!: boolean;
   // languages = new FormControl();

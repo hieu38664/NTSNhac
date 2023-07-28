@@ -11,14 +11,17 @@ import { NgbModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { CallApiService } from './service/call-api.service';
 import { UpdateComponent } from './update/update.component';
 import { MultiDropdownComponent } from './multi-dropdown/multi-dropdown.component';
-import {MatCheckboxModule} from '@angular/material/checkbox'; 
-import {MatSelectModule} from '@angular/material/select';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { ContentComponent } from './content/content.component'; 
+
 
 
 // import { NgSelectModule } from '@ng-select/ng-select';
 
 
+// import {MatSelectModule} from '@angular/material/select';
+// import {MatFormFieldModule} from '@angular/material/form-field';
 // import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 // import { LabelModule } from '@progress/kendo-angular-label';
 // import { DxButtonModule, DxDropDownBoxModule, DxTreeListModule } from 'devextreme-angular';
@@ -39,6 +42,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     DeleteComponent,
     UpdateComponent,
     MultiDropdownComponent,
+    SidebarComponent,
+    ContentComponent,
 
 
   ],
@@ -51,13 +56,13 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     NgbModule,
     ReactiveFormsModule,
     MatCheckboxModule,
-    MatSelectModule,
-    MatFormFieldModule,
-
+    // MatSelectModule,
+    
     
     // NgSelectModule,
     
     
+    // MatFormFieldModule,
     // DropDownsModule,
     // LabelModule,
     // DxButtonModule,

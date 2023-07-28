@@ -1,26 +1,41 @@
 <body>
-  <div id="main">
-    <div id="sidebar" class="col-md-2">
-      <div class="sidebar-brand">
-        <h3> NTS - Nhạc </h3>
+  <div id="main" class="main">
+
+    <div *ngIf="sidebarOn" id="sidebar" class="sidebar dong" [ngStyle]="{'width': leftWidth}">
+      <div class="sidebar-brand" href="">
+        <span class="image">
+            <img src="../assets/img/logo.png" alt="">
+        </span>
+        <div class="text logo-text">
+            <span class="name"><h3>NTS - Nhạc</h3></span>
+        </div>
       </div>
       <div class="sidebar-menu">
         <ul>
           <li>
             <a href="" class="active">
-              <span class="las la-music"></span><span>Nhạc</span>
+              <span class="las la-music"></span>
+              <span class="name">Nhạc</span>
+            </a>
+          </li>
+          <li>
+            <a href="" class="active">
+              <span class="las la-music"></span>
+              <span class="name">Nhạc</span>
             </a>
           </li>
         </ul>
       </div>
     </div>
 
-    <div id="body" class="col-md-10">
-
+    <div id="body" class="body" [ngStyle]="{'width': rightWidth}">
       <div id="header">
-        <h3><label for=""><span class="las la-bars"></span></label>QUẢN LÝ NHẠC</h3>
-        
+        <h3>
+          <i (click)="sidebarClick()" class="las la-bars toggle"></i>
+          <label for="">QUẢN LÝ NHẠC</label>
+        </h3>
         <div class="user-wrapper">
+          <!-- <i class="las la-bell"></i> -->
           <img src="assets/img/avatar.jpg" width="40px" height="40px" alt="avatar">
           <div>
             <h4> Hieu </h4>
@@ -28,7 +43,7 @@
           </div>
         </div>
       </div>
-
+      
       <div id="main-content">
         <div class="card">
           <div class="card-head">
@@ -79,13 +94,13 @@
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th> STT </th>
-                  <th> Xử lý </th>
-                  <th> Tình trạng </th>
-                  <th> Loại nhạc </th>
-                  <th> Thời gian phát </th>
-                  <th> Ngày phát </th>
-                  <th> Nội dung </th>
+                  <th class="stt-width">STT</th>
+                  <th class="equal-width">Xử lý</th>
+                  <th class="equal-width">Tình trạng</th>
+                  <th class="equal-width">Loại nhạc</th>
+                  <th class="equal-width">Thời gian phát</th>
+                  <th class="equal-width">Ngày phát</th>
+                  <th class="three-times-width" >Nội dung</th>
                 </tr>
               </thead>
               <tbody *ngFor="let nha of danhSachNhac ; let i = index">
@@ -101,14 +116,14 @@
                     <span class="active" style="color: green;" *ngIf="nha.tinhTrang==true">Đang hoạt động</span>
                     <span class="inactive" style="color: red;" *ngIf="nha.tinhTrang==false">Dừng hoạt động</span>
                   </td>
-                  <td>
+                  <td style="text-align: left;">
                     <span *ngIf="nha.type==1">Nhạc một lần</span>
                     <span *ngIf="nha.type==2">Nhạc theo tuần</span>
                     <span *ngIf="nha.type==3">Nhạc theo năm </span>
                   </td>
                   <td> {{nha.thoigianPhat}} </td>
-                  <td> {{nha.ngay}} </td>
-                  <td> {{nha.noiDung}} </td>
+                  <td style="text-align: left;" > {{nha.ngay}} </td>
+                  <td style="text-align: left;" > {{nha.noiDung}} </td>
                 </tr>
               </tbody>
             </table>
@@ -121,7 +136,7 @@
           <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 d-flex justify-content-start">
             <div class="controls ">
               <select class="form-control" style="border: 1px solid #ddd;" [(ngModel)]="model.PageSize"
-                (ngModelChange)="paginationMusic()" name="pageSize">
+              (ngModelChange)="paginationMusic()" name="pageSize">
                 <option *ngFor="let item of ListPageSize" [value]="item">{{item}}</option>
               </select>
             </div>
@@ -129,8 +144,8 @@
           </div>
           <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12  d-flex justify-content-end">
             <ngb-pagination [collectionSize]="model.totalItems" [(page)]="model.PageNumber"
-              (pageChange)="paginationMusic()" [pageSize]="model.PageSize" [maxSize]="5" [rotate]="true"
-              [boundaryLinks]="true"></ngb-pagination>
+            (pageChange)="paginationMusic()" [pageSize]="model.PageSize" [maxSize]="5" [rotate]="true"
+            [boundaryLinks]="true"></ngb-pagination>
           </div>
         </div>
       </div>
@@ -150,8 +165,19 @@
         </div>
       </div>
     </div>
+
+    <script>
+      const body = document.querySelector('body'),
+            sidebar = body.querySelector('.sidebar'),
+            toggle = body.querySelector(".toggle");
+
+      toggle.addEventListener("click", () => {
+        sidebar.classList.toggle("dong");
+      });
+    </script>
   </div>
 
+  
 
 </body>
 
