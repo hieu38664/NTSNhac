@@ -186,7 +186,6 @@ select option,
     flex: 1;
 }
 
-
 .sidebar-bottom {
     position: absolute;
     bottom: 0;
@@ -476,6 +475,21 @@ td .inactive {
 
 .table .btn-primary {
     margin-right: 6px;
+}
+
+#footer{
+    padding-top: 10px;
+}
+
+a.page-link,
+.page-item.disabled a.page-link{
+    background-color: var(--color-bg);
+    color: var(--color-text);
+}
+
+.form-control{
+    background-color: var(--color-bg);
+    color: var(--color-text);
 }
 
 #note {

@@ -163,7 +163,7 @@
       </div>
 
       <div id="footer">
-        <div class="row">
+        <div class="row ">
           <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 d-flex justify-content-start">
             <div class="controls ">
               <select class="form-control" style="border: 1px solid #ddd;" [(ngModel)]="model.PageSize"
@@ -174,7 +174,7 @@
             <label class="form-label" style="padding:4px;">bản ghi/Trang</label>
           </div>
           <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12  d-flex justify-content-end">
-            <ngb-pagination [collectionSize]="model.totalItems" [(page)]="model.PageNumber"
+            <ngb-pagination  [collectionSize]="model.totalItems" [(page)]="model.PageNumber"
               (pageChange)="paginationMusic()" [pageSize]="model.PageSize" [maxSize]="5" [rotate]="true"
               [boundaryLinks]="true"></ngb-pagination>
           </div>
