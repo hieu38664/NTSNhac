@@ -25,24 +25,14 @@
         </div>
       </div>
 
-
-      <!-- <div class="sidebar-bottom" *ngFor="let item of darkMode">
-        <span [class]="item.iconClass">{{ item.name }}</span>
-        <label class="switch">
-          <input type="checkbox" name="tinhTrang2">
-          <span class="slider round"></span>
-        </label>
-      </div> -->
-
-      <div class="sidebar-bottom" >
+      <div class="sidebar-bottom">
         <div class="sun-moon">
           <i class='las la-moon icon moon' *ngIf="darkModeActive"></i>
           <i class='las la-sun icon sun' *ngIf="!darkModeActive"></i>
         </div>
         <span class="mode-text text" *ngIf="sidebarOn">{{ darkModeActive ? 'Dark mode' : 'Light mode' }}</span>
-    
         <div class="toggle-switch">
-          <label class="switch" >
+          <label class="switch">
             <input type="checkbox" [(ngModel)]="darkModeActive" (click)="toggleDarkMode()">
             <span class="slider round"></span>
           </label>
@@ -57,6 +47,12 @@
           <i (click)="sidebarClick()" class="las la-bars"></i>
           <label for="">QUẢN LÝ NHẠC</label>
         </h3>
+
+        <!-- <div class="audio">
+          <button class="btn btn-secondary" (click)="openFileInput.click()">PLAY AUDIO</button>
+          <input #openFileInput type="file" style="display: none" (change)="onFileSelected($event)">
+        </div> -->
+        
         <div class="user-wrapper">
           <!-- <i class="las la-bell"></i> -->
           <img src="assets/img/avatar.jpg" width="40px" height="40px" alt="avatar">
@@ -79,7 +75,7 @@
               </select>
 
               <div class="search-text" *ngIf="selectedOption === 'content'" data-content>
-                <input type="text" name="search-box" placeholder="Tìm kiếm nhạc theo nội dung"
+                <input type="text" class="search-box" placeholder="Tìm kiếm nhạc theo nội dung"
                   [(ngModel)]="model.keyword" (keyup)="onKeyUp($event)">
               </div>
 
@@ -88,7 +84,7 @@
                   <option value="1">Đang hoạt động</option>
                   <option value="2">Dừng hoạt động</option>
                 </select>
-                <input type="text" name="search-box" placeholder="Tìm kiếm nhạc theo nội dung"
+                <input type="text" class="search-box" placeholder="Tìm kiếm nhạc theo nội dung"
                   [(ngModel)]="model.keyword" (keyup)="onKeyUp($event)">
               </div>
 
@@ -98,7 +94,7 @@
                   <option value="2">Nhạc theo tuần</option>
                   <option value="3">Nhạc theo năm</option>
                 </select>
-                <input type="text" name="search-box" placeholder="Tìm kiếm nhạc theo nội dung"
+                <input type="text" class="search-box" placeholder="Tìm kiếm nhạc theo nội dung"
                   [(ngModel)]="model.keyword" (keyup)="onKeyUp($event)">
               </div>
 
@@ -141,8 +137,8 @@
                     </button>
                   </td>
                   <td>
-                    <span class="active" style="color: green;" *ngIf="nha.tinhTrang==true">Đang hoạt động</span>
-                    <span class="inactive" style="color: red;" *ngIf="nha.tinhTrang==false">Dừng hoạt động</span>
+                    <span class="active" *ngIf="nha.tinhTrang==true">Đang hoạt động</span>
+                    <span class="inactive" *ngIf="nha.tinhTrang==false">Dừng hoạt động</span>
                   </td>
                   <td style="text-align: left;">
                     <span *ngIf="nha.type==1">Nhạc một lần</span>

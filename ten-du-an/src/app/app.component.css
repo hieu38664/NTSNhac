@@ -2,9 +2,26 @@
 
 :root {
     --main-color: #DD2F6E;
+    /* --main-color: ; */
     --color-dark: #1D2231;
     --text-grey: #8390A2;
     --toggle-color: #DDD;
+    --color-bg: #f0f0f0;
+    --color-text: #333;
+    --color-box: #fff;
+    --color-active: green;
+    --color-inactive: red;
+
+}
+
+[data-theme="dark"] {
+    --color-bg: #444;
+    --color-text: #f0f0f0;
+    --color-box: #333;
+    --main-color: #B51249;
+    --color-active: #00ff00;
+    --color-inactive: #f11;
+    /* --color-scrollbar:  */
 }
 
 * {
@@ -17,8 +34,8 @@
 }
 
 body {
-    background-color: #f0f0f0;
-    color: #333;
+    background-color: var(--color-bg);
+    color: var(--color-text);
 }
 
 #main {
@@ -27,31 +44,19 @@ body {
     overflow: hidden;
 }
 
-/* #sidebar{
-    justify-content: space-between;
-} */
-
 .sidebar {
-    /* position: fixed; */
     position: relative;
     height: 100vh;
     padding: 0;
     background: var(--main-color);
-    /* width: 250px; */
 }
-
-/* .sidebar.dong {
-    width: 100px;
-} */
 
 .sidebar-brand {
     display: flex;
     align-items: center;
-    /* display: inline-block; */
-    /* justify-content: space-between; */
     height: 70px;
     padding: 1rem 1rem 1rem 1.5rem;
-    color: #fff;
+    color: #222;
     background: #fff;
     background-color: #E4E9F7;
 }
@@ -159,51 +164,28 @@ body {
     transition: var(--tran-04);
 }
 
-
-
+select,
+select option,
+.search-text,
+.search-box {
+    background-color: var(--color-box);
+    color: var(--color-text);
+}
 
 .sidebar,
 .body {
     height: 100vh;
-    /* overflow: hidden; */
     transition: width 0.3s ease;
 }
 
-#body {
-    /* left: 250px; */
-    margin-left: 10px;
-    /* float: right; */
-    /* width: 100%;
-    right: 0; */
-    /* overflow: auto; */
+#body.body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    margin: 0 10px;
     overflow-x: hidden;
     flex: 1;
 }
 
-
-.dark-mode {
-    background-color: #1a1a1a !important;
-    color: #fff;
-}
-
-.dark-mode .sidebar-brand {
-    color: #000;
-    background-color: #E4E9F7;
-}
-
-.dark-mode .sidebar-menu a {
-    color: #fff;
-}
-
-.dark-mode .sidebar-menu a.active {
-    background: #fff;
-    color: var(--main-color);
-}
-
-body.dark-mode {
-    background-color: #222;
-    color: #fff;
-}
 
 .sidebar-bottom {
     position: absolute;
@@ -229,7 +211,6 @@ body.dark-mode {
     margin-left: auto;
 }
 
-/* Nếu bạn muốn thêm khoảng cách giữa dark mode và toggle switch */
 .sidebar-bottom .mode-text,
 .toggle-switch {
     margin-right: 10px;
@@ -306,27 +287,29 @@ input:checked+.slider:before {
     padding-top: 1rem;
     padding-right: 1rem;
     box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
-    /* position: fixed; */
     width: 100%;
     top: 0;
     z-index: 100;
-    /* background-color: #E4E9F7; */
-    /* overflow: hidden; */
 }
 
 h3 {
-    color: #222;
     margin: 0;
 }
 
-#header label span {
+#header label {
+    align-items: center;
     font-size: 1.7rem;
     padding-left: 1rem;
+}
+
+#header h3 {
+    margin-top: 5px;
 }
 
 .user-wrapper {
     display: flex;
     align-items: center;
+    /* padding-bottom: 0.5rem; */
 }
 
 .user-wrapper img {
@@ -354,7 +337,8 @@ h3 {
     width: 100%;
     margin-top: 1rem;
     padding: 0;
-    /* margin-left: 10px; */
+    background-color: var(--color-bg);
+    color: var(--color-text);
 }
 
 .card-body {
@@ -377,10 +361,6 @@ h3 {
     display: flex;
     align-items: center;
 }
-
-/* button[type="submit"]{
-    margin-right: 0;
-} */
 
 .search-container select {
     padding: 8px;
@@ -411,6 +391,12 @@ h3 {
     cursor: pointer;
     margin-right: 10px;
     white-space: nowrap;
+}
+
+.card-header,
+.card-body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
 }
 
 .card button span,
@@ -470,6 +456,16 @@ td {
     text-align: center;
     /* padding: 8px; */
     border: 1px solid #ddd;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+}
+
+td .active {
+    color: var(--color-active);
+}
+
+td .inactive {
+    color: var(--color-inactive);
 }
 
 .stt-width {
@@ -479,16 +475,6 @@ td {
 .table .btn-primary {
     margin-right: 6px;
 }
-
-
-/* #footer {
-    display: flex;
-    align-items: center;
-}
-
-#footer .quantity {
-    width: 90%;
-} */
 
 #note {
     display: flex;
@@ -524,4 +510,18 @@ td {
 
 .square i {
     color: white;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #B7B7B7;
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #6E7171;
 }

@@ -1,10 +1,8 @@
-import { Component, Injectable, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component, Injectable, OnInit, ViewEncapsulation } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddComponent } from './add/add.component';
 import { DeleteComponent } from './delete/delete.component';
 import { CallApiService } from './service/call-api.service';
-import { FormsModule } from '@angular/forms';
 import { UpdateComponent } from './update/update.component';
 import { MenuService } from './service/menu.service';
 
@@ -56,9 +54,12 @@ export class AppComponent implements OnInit {
     { name: 'Nhạc', iconClass: 'las la-music', isActive: true, link: '#' },
     { name: 'Video', iconClass: 'las la-video', isActive: false, link: 'video' },
     { name: 'Hình ảnh', iconClass: 'las la-image', isActive: false, link: '#' },
-    { name: 'Hình ảnh', iconClass: 'las la-image', isActive: false, link: '#' },
-    { name: 'Hình ảnh', iconClass: 'las la-image', isActive: false, link: '#' },
-    { name: 'Hình ảnh', iconClass: 'las la-image', isActive: false, link: '#' },
+    { name: 'abcxyz', iconClass: 'las la-angry', isActive: false, link: '#' },
+    { name: 'abcxyz', iconClass: 'las la-grin', isActive: false, link: '#' },
+    { name: 'abcxyz', iconClass: 'las la-sad-cry', isActive: false, link: '#' },
+    { name: 'abcxyz', iconClass: 'las la-tired', isActive: false, link: '#' },
+    { name: 'abcxyz', iconClass: 'las la-kiss', isActive: false, link: '#' },
+    { name: 'abcxyz', iconClass: 'las la-award', isActive: false, link: '#' },
   ];
 
   darkMode = [
@@ -90,6 +91,7 @@ export class AppComponent implements OnInit {
     });
     this.currentLink = item.link;
   }
+
   
   paginationMusic() {
     this.service.paginationMusic(this.model).subscribe((data: any) => {
@@ -123,27 +125,13 @@ export class AppComponent implements OnInit {
 
   ngOnInit():void {
     this.paginationMusic();
-
-    const darkModeStorage = localStorage.getItem('darkModeActive');
-    this.darkModeActive = darkModeStorage ? JSON.parse(darkModeStorage) : false;
-    this.applyDarkMode();
   }
   
   darkModeActive: boolean = false;
 
   toggleDarkMode() {
     this.darkModeActive = !this.darkModeActive;
-    this.applyDarkMode();
-    // Lưu trạng thái Dark Mode vào bộ nhớ cục bộ
-    localStorage.setItem('darkModeActive', JSON.stringify(this.darkModeActive));
-  }
-
-  applyDarkMode() {
-    if (this.darkModeActive) {
-      document.body.classList.add('dark-mode');
-    } else {
-      document.body.classList.remove('dark-mode');
-    }
+    document.documentElement.setAttribute('data-theme', this.darkModeActive? "dark" : "light" );
   }
 
   onKeyUp(event: KeyboardEvent) {

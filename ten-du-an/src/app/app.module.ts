@@ -15,8 +15,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { VideoComponent } from './video/video.component';
 import { MenuService } from './service/menu.service';
 import { RouterModule, Routes } from '@angular/router';
-import { MatDialogModule } from '@angular/material/dialog';
-
+import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
 
 
 // import { NgSelectModule } from '@ng-select/ng-select';
@@ -61,8 +61,9 @@ const routes: Routes = [
     ReactiveFormsModule,
     MatCheckboxModule,
     RouterModule.forRoot(routes),
-    MatDialogModule,
-    
+    MatSelectModule,
+    MatButtonModule,
+
     
     // MatSelectModule,
 
