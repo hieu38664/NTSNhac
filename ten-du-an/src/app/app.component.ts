@@ -184,6 +184,7 @@ export class AppComponent implements OnInit {
       this.paginationMusic();
       return;
     }
+    this.model.keyword = '';
     if (this.selectedOption === 'status') {
       this.model.type = 0;
       this.paginationMusic();

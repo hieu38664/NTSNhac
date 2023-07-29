@@ -43,16 +43,23 @@
 
     <div id="body" class="body" [ngStyle]="{'width': rightWidth}">
       <div id="header">
-        <h3>
+        <h3 class="d-flex">
           <i (click)="sidebarClick()" class="las la-bars"></i>
           <label for="">QUẢN LÝ NHẠC</label>
+          <div class="toggle-switch">
+            <label class="switch">
+              <input type="checkbox" [(ngModel)]="darkModeActive" (click)="toggleDarkMode()">
+              <span class="slider round"></span>
+            </label>
+          </div>
         </h3>
+
 
         <!-- <div class="audio">
           <button class="btn btn-secondary" (click)="openFileInput.click()">PLAY AUDIO</button>
           <input #openFileInput type="file" style="display: none" (change)="onFileSelected($event)">
         </div> -->
-        
+
         <div class="user-wrapper">
           <!-- <i class="las la-bell"></i> -->
           <img src="assets/img/avatar.jpg" width="40px" height="40px" alt="avatar">

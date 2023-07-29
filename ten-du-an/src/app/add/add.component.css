@@ -4,6 +4,8 @@
 
   .modal-content {
     width: 600px;
+    background-color: var(--color-bg);
+    color: var(--color-text);
   }
 
   .container {
@@ -60,12 +62,14 @@
     border: 1px solid #ccc;
     border-radius: 10px;
     font-size: 16px;
-    color: #555;
-    background-color: #fff;
+    background-color: var(--color-box);
+    color: var(--color-text);
   }
 
-  textarea{
+  textarea {
     border: 1px solid #ccc;
+    background-color: var(--color-box);
+    color: var(--color-text);
   }
 
   .no-resize {
@@ -170,18 +174,14 @@
   }
 
   .active {
-    color: green;
+    color: var(--color-active);
   }
 
   .inactive {
-    color: red;
+    color: var(--color-inactive);
   }
 
   button.disabled {
     background-color: #ccc;
     cursor: not-allowed;
   }
-
-
-
-  
