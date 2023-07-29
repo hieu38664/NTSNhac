@@ -11,9 +11,11 @@ import { NgbModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { CallApiService } from './service/call-api.service';
 import { UpdateComponent } from './update/update.component';
 import { MultiDropdownComponent } from './multi-dropdown/multi-dropdown.component';
-import {MatCheckboxModule} from '@angular/material/checkbox';
-import { SidebarComponent } from './sidebar/sidebar.component';
-import { ContentComponent } from './content/content.component'; 
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { VideoComponent } from './video/video.component';
+import { MenuService } from './service/menu.service';
+import { RouterModule, Routes } from '@angular/router';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 
@@ -32,7 +34,10 @@ import { ContentComponent } from './content/content.component';
 // import { MatSelectModule } from '@angular/material/select';
 // import { NTSDropDownComponent } from './nts-drop-down/nts-drop-down.component';
 
-
+const routes: Routes = [
+  { path: 'video', component: VideoComponent },
+  // Add more routes for other components if needed
+];
 
 
 @NgModule({
@@ -42,8 +47,7 @@ import { ContentComponent } from './content/content.component';
     DeleteComponent,
     UpdateComponent,
     MultiDropdownComponent,
-    SidebarComponent,
-    ContentComponent,
+    VideoComponent,
 
 
   ],
@@ -56,12 +60,16 @@ import { ContentComponent } from './content/content.component';
     NgbModule,
     ReactiveFormsModule,
     MatCheckboxModule,
+    RouterModule.forRoot(routes),
+    MatDialogModule,
+    
+    
     // MatSelectModule,
-    
-    
+
+
     // NgSelectModule,
-    
-    
+
+
     // MatFormFieldModule,
     // DropDownsModule,
     // LabelModule,
@@ -78,6 +86,7 @@ import { ContentComponent } from './content/content.component';
   ],
   providers: [
     CallApiService,
+    MenuService,
   ],
 
   bootstrap: [AppComponent],

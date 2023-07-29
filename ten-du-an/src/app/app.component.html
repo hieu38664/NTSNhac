@@ -1,37 +1,60 @@
 <body>
   <div id="main" class="main">
 
-    <div *ngIf="sidebarOn" id="sidebar" class="sidebar dong" [ngStyle]="{'width': leftWidth}">
-      <div class="sidebar-brand" href="">
-        <span class="image">
+    <div id="sidebar" class="sidebar" [ngStyle]="{'width': leftWidth}">
+      <div>
+        <div class="sidebar-brand" href="">
+          <span class="image">
             <img src="../assets/img/logo.png" alt="">
-        </span>
-        <div class="text logo-text">
-            <span class="name"><h3>NTS - Nhạc</h3></span>
+          </span>
+          <div class="text logo-text" *ngIf="sidebarOn">
+            <span class="name">
+              <h3>NTS - Nhạc</h3>
+            </span>
+          </div>
+        </div>
+        <div class="sidebar-menu">
+          <ul>
+            <li *ngFor="let item of menuItems">
+              <a href="item.link" [ngClass]="{'active': item.isActive}" (click)="activateMenuItem($event, item)">
+                <span [class]="item.iconClass"></span>
+                <span class="name" *ngIf="sidebarOn">{{ item.name }}</span>
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
-      <div class="sidebar-menu">
-        <ul>
-          <li>
-            <a href="" class="active">
-              <span class="las la-music"></span>
-              <span class="name">Nhạc</span>
-            </a>
-          </li>
-          <li>
-            <a href="" class="active">
-              <span class="las la-music"></span>
-              <span class="name">Nhạc</span>
-            </a>
-          </li>
-        </ul>
+
+
+      <!-- <div class="sidebar-bottom" *ngFor="let item of darkMode">
+        <span [class]="item.iconClass">{{ item.name }}</span>
+        <label class="switch">
+          <input type="checkbox" name="tinhTrang2">
+          <span class="slider round"></span>
+        </label>
+      </div> -->
+
+      <div class="sidebar-bottom" >
+        <div class="sun-moon">
+          <i class='las la-moon icon moon' *ngIf="darkModeActive"></i>
+          <i class='las la-sun icon sun' *ngIf="!darkModeActive"></i>
+        </div>
+        <span class="mode-text text" *ngIf="sidebarOn">{{ darkModeActive ? 'Dark mode' : 'Light mode' }}</span>
+    
+        <div class="toggle-switch">
+          <label class="switch" >
+            <input type="checkbox" [(ngModel)]="darkModeActive" (click)="toggleDarkMode()">
+            <span class="slider round"></span>
+          </label>
+        </div>
       </div>
+
     </div>
 
     <div id="body" class="body" [ngStyle]="{'width': rightWidth}">
       <div id="header">
         <h3>
-          <i (click)="sidebarClick()" class="las la-bars toggle"></i>
+          <i (click)="sidebarClick()" class="las la-bars"></i>
           <label for="">QUẢN LÝ NHẠC</label>
         </h3>
         <div class="user-wrapper">
@@ -43,7 +66,7 @@
           </div>
         </div>
       </div>
-      
+
       <div id="main-content">
         <div class="card">
           <div class="card-head">
@@ -56,7 +79,8 @@
               </select>
 
               <div class="search-text" *ngIf="selectedOption === 'content'" data-content>
-                <input type="text" name="search-box" placeholder="Tìm kiếm nhạc theo nội dung" [(ngModel)]="model.keyword" (keyup)="onKeyUp($event)">
+                <input type="text" name="search-box" placeholder="Tìm kiếm nhạc theo nội dung"
+                  [(ngModel)]="model.keyword" (keyup)="onKeyUp($event)">
               </div>
 
               <div class="search-text" *ngIf="selectedOption === 'status'">
@@ -64,7 +88,8 @@
                   <option value="1">Đang hoạt động</option>
                   <option value="2">Dừng hoạt động</option>
                 </select>
-                <input type="text" name="search-box" placeholder="Tìm kiếm nhạc theo nội dung" [(ngModel)]="model.keyword" (keyup)="onKeyUp($event)">
+                <input type="text" name="search-box" placeholder="Tìm kiếm nhạc theo nội dung"
+                  [(ngModel)]="model.keyword" (keyup)="onKeyUp($event)">
               </div>
 
               <div class="search-text" *ngIf="selectedOption === 'type'">
@@ -73,18 +98,21 @@
                   <option value="2">Nhạc theo tuần</option>
                   <option value="3">Nhạc theo năm</option>
                 </select>
-                <input type="text" name="search-box" placeholder="Tìm kiếm nhạc theo nội dung" [(ngModel)]="model.keyword" (keyup)="onKeyUp($event)">
+                <input type="text" name="search-box" placeholder="Tìm kiếm nhạc theo nội dung"
+                  [(ngModel)]="model.keyword" (keyup)="onKeyUp($event)">
               </div>
 
               <div class="button">
               </div>
-              <button class="btn btn-success" type="submit" (click)="paginationMusic()"> <span class="las la-search"></span>Tìm kiếm </button>
-              <button class="btn btn-secondary" type="secondary" (click)="clear()"><span class="las la-sync"></span>Làm mới</button>
+              <button class="btn btn-success" type="submit" (click)="paginationMusic()"> <span
+                  class="las la-search"></span>Tìm kiếm </button>
+              <button class="btn btn-secondary" type="secondary" (click)="clear()"><span class="las la-sync"></span>Làm
+                mới</button>
             </div>
           </div>
 
           <div class="card-header">
-            <div class="total" >
+            <div class="total">
               <h6>Tổng số {{model.totalItems}} loại nhạc</h6>
             </div>
             <button class="btn btn-success" (click)="addModel()"><span class="las la-plus"></span>Thêm mới</button>
@@ -100,7 +128,7 @@
                   <th class="equal-width">Loại nhạc</th>
                   <th class="equal-width">Thời gian phát</th>
                   <th class="equal-width">Ngày phát</th>
-                  <th class="three-times-width" >Nội dung</th>
+                  <th class="three-times-width">Nội dung</th>
                 </tr>
               </thead>
               <tbody *ngFor="let nha of danhSachNhac ; let i = index">
@@ -122,8 +150,8 @@
                     <span *ngIf="nha.type==3">Nhạc theo năm </span>
                   </td>
                   <td> {{nha.thoigianPhat}} </td>
-                  <td style="text-align: left;" > {{nha.ngay}} </td>
-                  <td style="text-align: left;" > {{nha.noiDung}} </td>
+                  <td style="text-align: left;"> {{nha.ngay}} </td>
+                  <td style="text-align: left;"> {{nha.noiDung}} </td>
                 </tr>
               </tbody>
             </table>
@@ -136,7 +164,7 @@
           <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 d-flex justify-content-start">
             <div class="controls ">
               <select class="form-control" style="border: 1px solid #ddd;" [(ngModel)]="model.PageSize"
-              (ngModelChange)="paginationMusic()" name="pageSize">
+                (ngModelChange)="paginationMusic()" name="pageSize">
                 <option *ngFor="let item of ListPageSize" [value]="item">{{item}}</option>
               </select>
             </div>
@@ -144,8 +172,8 @@
           </div>
           <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12  d-flex justify-content-end">
             <ngb-pagination [collectionSize]="model.totalItems" [(page)]="model.PageNumber"
-            (pageChange)="paginationMusic()" [pageSize]="model.PageSize" [maxSize]="5" [rotate]="true"
-            [boundaryLinks]="true"></ngb-pagination>
+              (pageChange)="paginationMusic()" [pageSize]="model.PageSize" [maxSize]="5" [rotate]="true"
+              [boundaryLinks]="true"></ngb-pagination>
           </div>
         </div>
       </div>
@@ -166,18 +194,11 @@
       </div>
     </div>
 
-    <script>
-      const body = document.querySelector('body'),
-            sidebar = body.querySelector('.sidebar'),
-            toggle = body.querySelector(".toggle");
 
-      toggle.addEventListener("click", () => {
-        sidebar.classList.toggle("dong");
-      });
-    </script>
+
   </div>
 
-  
+
 
 </body>
 

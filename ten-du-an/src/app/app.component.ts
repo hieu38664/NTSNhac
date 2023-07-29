@@ -6,6 +6,7 @@ import { DeleteComponent } from './delete/delete.component';
 import { CallApiService } from './service/call-api.service';
 import { FormsModule } from '@angular/forms';
 import { UpdateComponent } from './update/update.component';
+import { MenuService } from './service/menu.service';
 
 
 @Component({
@@ -24,9 +25,11 @@ export class AppComponent implements OnInit {
   constructor(
     private modalService: NgbModal,
     private service: CallApiService,
+    private menuService: MenuService,
   ) {
   }
 
+  
   danhSachNhac: any = [];
   total: number = 0;
   keyword: string = '';
@@ -38,8 +41,7 @@ export class AppComponent implements OnInit {
   selectedOption = 'default';
   statusOptions = 'default';
   typeOptions = 'default';
-
-  sidebarOn: boolean = true;
+  
 
   model: any = {
     PageSize: 10,
@@ -49,31 +51,53 @@ export class AppComponent implements OnInit {
     // status: 0,
     type: 0
   }
+  
+  menuItems = [
+    { name: 'Nhạc', iconClass: 'las la-music', isActive: true, link: '#' },
+    { name: 'Video', iconClass: 'las la-video', isActive: false, link: 'video' },
+    { name: 'Hình ảnh', iconClass: 'las la-image', isActive: false, link: '#' },
+    { name: 'Hình ảnh', iconClass: 'las la-image', isActive: false, link: '#' },
+    { name: 'Hình ảnh', iconClass: 'las la-image', isActive: false, link: '#' },
+    { name: 'Hình ảnh', iconClass: 'las la-image', isActive: false, link: '#' },
+  ];
 
+  darkMode = [
+    { name: 'Dark mode', iconClass: 'las la-moon', isActive: true},
+    { name: 'Light mode', iconClass: 'las la-sun', isActive: false },
+  ];
+  
+  sidebarOn: any = true;
   leftWidth: string = '250px';
   rightWidth: string = 'calc(100% - 260px)';
-
-  toggleLeft() {
-    if (this.leftWidth === '12%') {
-      this.leftWidth = '0';
-      this.rightWidth = '98%';
+  currentLink: string = '';
+  
+  sidebarClick() {
+    this.sidebarOn = !this.sidebarOn;
+    console.log(this.sidebarOn);
+    if (this.sidebarOn === false) {
+      this.leftWidth = '100px';
+      this.rightWidth = 'calc(100% - 110px)';
     } else {
       this.leftWidth = '250px';
       this.rightWidth = 'calc(100% - 260px)';
     }
   }
-
-  sidebarClick(){
-    // this.sidebarOn
-    this.sidebarOn = !this.sidebarOn;
+  
+  activateMenuItem(event: Event, item: any) {
+    event.preventDefault(); 
+    this.menuItems.forEach((menuItem) => {
+      menuItem.isActive = menuItem === item;
+    });
+    this.currentLink = item.link;
   }
-
+  
   paginationMusic() {
     this.service.paginationMusic(this.model).subscribe((data: any) => {
       this.startIndex = ((this.model.PageNumber - 1) * this.model.PageSize + 1);
       this.model.totalItems = data.total;
       this.danhSachNhac = data.nhacInfors;
     });
+    this.menuService.setMenuItems(this.menuItems);
   }
 
   clear() {
@@ -97,8 +121,29 @@ export class AppComponent implements OnInit {
     this.paginationMusic();
   }
 
-  ngOnInit() {
+  ngOnInit():void {
     this.paginationMusic();
+
+    const darkModeStorage = localStorage.getItem('darkModeActive');
+    this.darkModeActive = darkModeStorage ? JSON.parse(darkModeStorage) : false;
+    this.applyDarkMode();
+  }
+  
+  darkModeActive: boolean = false;
+
+  toggleDarkMode() {
+    this.darkModeActive = !this.darkModeActive;
+    this.applyDarkMode();
+    // Lưu trạng thái Dark Mode vào bộ nhớ cục bộ
+    localStorage.setItem('darkModeActive', JSON.stringify(this.darkModeActive));
+  }
+
+  applyDarkMode() {
+    if (this.darkModeActive) {
+      document.body.classList.add('dark-mode');
+    } else {
+      document.body.classList.remove('dark-mode');
+    }
   }
 
   onKeyUp(event: KeyboardEvent) {
@@ -185,6 +230,27 @@ export class AppComponent implements OnInit {
     }
   }
 
-  
+  // isDarkMode: boolean = false;
+
+  // toggleDarkMode() {
+  //   this.isDarkMode = !this.isDarkMode;
+  //   this.applyDarkMode();
+  // }
+
+  // checkDarkMode() {
+  //   const isDarkMode = localStorage.getItem('isDarkMode');
+  //   this.isDarkMode = isDarkMode === 'true';
+  //   this.applyDarkMode();
+  // }
+
+  // applyDarkMode() {
+  //   if (this.isDarkMode) {
+  //     document.body.classList.add('dark-mode');
+  //   } else {
+  //     document.body.classList.remove('dark-mode');
+  //   }
+  //   localStorage.setItem('isDarkMode', String(this.isDarkMode));
+  // }
+
 
 }
